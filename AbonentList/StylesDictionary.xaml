@@ -1,0 +1,34 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:AbonentList">
+
+  <Style TargetType="{x:Type DataGrid}" x:Key="mDataGridBaseStyle">
+    <Setter Property="AutoGenerateColumns" Value="False" />
+    <Setter Property="EnableRowVirtualization" Value="True" />
+    <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected" />
+  </Style>
+
+  <Style TargetType="{x:Type DataGrid}" x:Key="mDataGridDefaultStyle" BasedOn="{StaticResource mDataGridBaseStyle}">
+    <Setter Property="Margin" Value="4,4,4,8" />
+  </Style>
+
+  <Style TargetType="{x:Type TextBlock}" x:Key="mGridLabelTextBlockStyle">
+    <Setter Property="Margin" Value="4" />
+  </Style>
+
+  <Style TargetType="{x:Type Button}" x:Key="mCommitButtonStyle">
+    <Setter Property="Margin" Value="4" />
+    <Setter Property="HorizontalAlignment" Value="Right" />
+    <Setter Property="Content" Value="Закрыть" />
+  </Style>
+
+  <Style TargetType="{x:Type Button}" x:Key="mShowWindowButtonStyle">
+    <Setter Property="Margin" Value="12,4" />
+  </Style>
+
+  <Style TargetType="{x:Type Button}" x:Key="mExportGridButtonStyle">
+    <Setter Property="Margin" Value="8,0,0,0" />
+    <Setter Property="Content" Value="Выгрузить CSV" />
+  </Style>
+
+</ResourceDictionary>

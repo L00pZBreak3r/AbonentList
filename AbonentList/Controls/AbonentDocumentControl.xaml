@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="AbonentList.Controls.AbonentDocumentControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AbonentList.Controls"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="{Binding Path=LabelText, Mode=OneTime}" Style="{StaticResource mGridLabelTextBlockStyle}" />
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <TextBlock Style="{StaticResource mGridLabelTextBlockStyle}" Width="400">
+                <Run Text="Фильтр по колонке &quot;" /><Run Text="{Binding Path=GridModel.SearchColumnName, Mode=OneWay}" /><Run Text="&quot;:" />
+            </TextBlock>
+            <TextBox Text="{Binding Path=GridModel.SearchText, UpdateSourceTrigger=PropertyChanged}" Width="300" />
+            <Button Command="{Binding Path=GridModel.ExportToCsvCommand}" Style="{StaticResource mExportGridButtonStyle}" />
+        </StackPanel>
+        <local:AbonentGridControl Grid.Row="2" DataContext="{Binding Path=GridModel, Mode=OneTime}" IsDataGridReadOnly="{Binding Path=IsDataGridReadOnly, Mode=OneWay}" />
+        <Button Grid.Row="3" Click="CommitButton_Click" Style="{StaticResource mCommitButtonStyle}" />
+    </Grid>
+</UserControl>

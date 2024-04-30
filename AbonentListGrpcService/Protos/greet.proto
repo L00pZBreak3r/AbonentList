@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "AbonentListGrpcService.Protos";
+
+package phonecompany;
+
+service AbonentList {
+  // Sends a description
+  rpc GetDescription (google.protobuf.Empty) returns (GetDescriptionReply);
+  rpc GetAbonentFullSet(google.protobuf.Empty) returns (AbonentSetReply);
+}
+
+message GetDescriptionReply {
+  string Description = 1;
+}
+
+message AbonentReply {
+  int32 Id = 1;
+  string FullName = 2;
+  string LastName = 3;
+  string FirstName = 4;
+  string MiddleName = 5;
+  int64 ContractDate = 6;
+  string Street = 7;
+  string Building = 8;
+  string FirstPhoneNumberPrivateString = 9;
+  string FirstPhoneNumberOrganizationString = 10;
+  string FirstPhoneNumberMobileString = 11;
+  int32 AddressId = 12;
+}
+
+message AddressReply {
+  int32 Id = 1;
+  string Country = 2;
+  string State = 3;
+  string City = 4;
+  string Street = 5;
+  string Building = 6;
+  string Apartment = 7;
+  int32 AssignedStreetId = 8;
+}
+
+message AssignedStreetReply {
+  int32 Id = 1;
+  string Street = 2;
+  int32 AbonentCount = 3;
+}
+
+message PhoneNumberReply {
+  int32 Id = 1;
+  int32 Number = 2;
+  int32 RegionCode = 3;
+  int32 RegionNumber = 4;
+  int32 PhoneNumberType = 5;
+  bool IsPlusRegion = 6;
+  bool IsMobile = 7;
+  string FullNumberString = 8;
+  int32 AbonentId = 9;
+  int32 AddressId = 10;
+}
+
+message AbonentSetReply {
+  repeated AbonentReply Abonents = 1;
+  repeated AddressReply Addresses = 2;
+  repeated AssignedStreetReply AssignedStreets = 3;
+  repeated PhoneNumberReply PhoneNumbers = 4;
+}

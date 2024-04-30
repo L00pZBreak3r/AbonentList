@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="AbonentList.Controls.AssignedStreetGridControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AbonentList.Controls"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="400"
+             DataContextChanged="AssignedStreetGridControl_DataContextChanged">
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="mAssignedStreetsViewSource" Source="{Binding AssignedStreets, Mode=OneWay}" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+    <DataGrid x:Name="mAssignedStreetsDataGrid" Style="{StaticResource mDataGridDefaultStyle}" IsReadOnly="{Binding Path=IsDataGridReadOnly, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=OneWay}"
+        ItemsSource="{Binding Source={StaticResource mAssignedStreetsViewSource}}" CurrentCellChanged="DataGrid_CurrentCellChanged">
+        <DataGrid.Columns>
+            <DataGridTextColumn Binding="{Binding Id}"
+                                Header="Id" Width="SizeToCells"
+                                IsReadOnly="True"/>
+            <DataGridTextColumn Binding="{Binding Street}" Header="Улица" 
+                                Width="*"/>
+            <DataGridTextColumn Binding="{Binding AbonentCount}" Header="Количество абонентов" IsReadOnly="True"
+                                Width="SizeToHeader"/>
+        </DataGrid.Columns>
+    </DataGrid>
+    <ScrollViewer Grid.Row="1">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+    <TextBlock Grid.Row="0" Text="Адреса на улице" Style="{StaticResource mGridLabelTextBlockStyle}" />
+    <local:AddressGridControl Grid.Row="1" DataContext="{Binding Source={StaticResource mAssignedStreetsViewSource}, Mode=OneWay}" IsDataGridReadOnly="True" />
+    </Grid>
+    </ScrollViewer>
+    </Grid>
+</UserControl>
